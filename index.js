@@ -24,12 +24,24 @@ let persons = [
   }
 ]
 
+app.use(express.json())
+
 app.get('/', (request, response) => {
   response.send('<h1>Welcome to Phonebook!</h1>')
 })
 
 app.get('/api/persons', (request, response) => {
   response.json(persons)
+})
+
+app.post('/api/persons', (request, response) => {
+  const min = persons.length
+  const max = persons.length + 1000;
+  const newId = Math.floor((Math.random() * (max - min) + min))
+  const person = request.body
+  person.id = newId
+  persons = persons.concat(person)
+  response.json(person)
 })
 
 app.get('/api/persons/:id', (request, response) => {
