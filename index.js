@@ -34,19 +34,35 @@ app.get('/api/persons', (request, response) => {
   response.json(persons)
 })
 
-app.post('/api/persons', (request, response) => {
+const generateId = () => {
   const min = persons.length
   const max = persons.length + 1000;
-  const newId = Math.floor((Math.random() * (max - min) + min))
+  return Math.floor((Math.random() * (max - min) + min))
+}
+
+app.post('/api/persons', (request, response) => {
+
+  if(!request.body.name) {
+    return response.status(400).json({error: 'name missing'})
+  }
+  
+  if(!request.body.number) {
+    return response.status(400).json({error: 'number missing'})
+  }
+
+  if (persons.find(person => person.name === request.body.name)) {
+    return response.status(400).json({error: 'name must be unique'})
+  }
+
   const person = request.body
-  person.id = newId
+  person.id = generateId()
   persons = persons.concat(person)
   response.json(person)
 })
 
 app.get('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
-  const person = persons.find(note => note.id === id)
+  const person = persons.find(person => person.id === id)
 
   if (person) {
     response.json(person)

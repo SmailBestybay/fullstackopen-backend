@@ -8,6 +8,20 @@ POST http://localhost:3001/api/persons/ HTTP/1.1
 content-type: application/json
 
 {
+    "name": "Dan Abramov",
+    "number": "12-34-567890"
+}
+
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
     "name": "sample",
     "number": "12-34-567890"
 }
+
+
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
