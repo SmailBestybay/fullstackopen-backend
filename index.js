@@ -27,6 +27,15 @@ let persons = [
 ]
 
 app.use(express.json())
+
+morgan.token('req-body', (request) =>  JSON.stringify(request.body))
+app.use(morgan(
+  ':method :url request body: :req-body',
+  {
+    skip: request => request.method !== "POST",
+    immediate: true
+  }
+))
 app.use(morgan('tiny'))
 
 app.get('/', (request, response) => {
