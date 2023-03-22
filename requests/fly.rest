@@ -1,0 +1,31 @@
+GET https://proud-meadow-2710.fly.dev/api/persons/
+
+###
+DELETE  https://proud-meadow-2710.fly.dev//api/persons/5 HTTP/1.1
+
+###
+POST  https://proud-meadow-2710.fly.dev//api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Dan Abramov",
+    "number": "12-34-567890"
+}
+
+###
+POST https://proud-meadow-2710.fly.dev/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "number": "12-34-567890"
+}
+
+
+###
+POST https://proud-meadow-2710.fly.dev/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample"
+}
