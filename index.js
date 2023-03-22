@@ -1,7 +1,20 @@
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
+const cors = require('cors')
 
+app.use(express.json())
+app.use(cors())
+
+morgan.token('req-body', (request) =>  JSON.stringify(request.body))
+app.use(morgan(
+  ':method :url request body: :req-body',
+  {
+    skip: request => request.method !== "POST",
+    immediate: true
+  }
+))
+app.use(morgan('tiny'))
 
 let persons = [
   {
@@ -25,18 +38,6 @@ let persons = [
     "number": "39-23-6423122"
   }
 ]
-
-app.use(express.json())
-
-morgan.token('req-body', (request) =>  JSON.stringify(request.body))
-app.use(morgan(
-  ':method :url request body: :req-body',
-  {
-    skip: request => request.method !== "POST",
-    immediate: true
-  }
-))
-app.use(morgan('tiny'))
 
 app.get('/', (request, response) => {
   response.send('<h1>Welcome to Phonebook!</h1>')
