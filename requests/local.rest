@@ -1,10 +1,13 @@
 GET http://localhost:3001/api/persons/
 
 ###
-GET http://localhost:3001/api/persons/641aa93a6c0d0c23fb31357b
+GET http://localhost:3001/api/persons/641aa9c0891eb7ec29de5a95
 
 ###
-DELETE  http://localhost:3001/api/persons/5 HTTP/1.1
+GET http://localhost:3001/api/info
+
+###
+DELETE  http://localhost:3001/api/persons/641aa93a6c0d0c23fb31357b HTTP/1.1
 
 ###
 POST http://localhost:3001/api/persons/ HTTP/1.1
@@ -31,4 +34,13 @@ content-type: application/json
 
 {
     "name": "sample"
+}
+
+###
+PUT  http://localhost:3001/api/persons/641e4bb6853c56bfc6cd4dfd HTTP/1.1
+content-type: application/json
+
+{
+    "name": "smile",
+    "number": "44444"
 }
